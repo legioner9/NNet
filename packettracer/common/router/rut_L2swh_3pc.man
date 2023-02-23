@@ -51,6 +51,11 @@ wr mem
 show run
 show vlan
 
+## L2 trunk
+
+en
+conf t
+int fa0/4
 
 
 
