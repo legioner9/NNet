@@ -1,0 +1,84 @@
+## multi MultySwitch conf
+
+en
+conf t
+int range fa0/1-2
+channel-protocol lacp
+channel-group 1 mode active
+
+    Switch(config-if-range)#channel-protocol ?
+      lacp  Prepare interface for LACP protocol
+      pagp  Prepare interface for PAgP protocol
+
+    Switch(config-if-range)#channel-group 1 mode ?
+      active     Enable LACP unconditionally
+      auto       Enable PAgP only if a PAgP device is detected
+      desirable  Enable PAgP unconditionally
+      on         Enable Etherchannel only
+      passive    Enable LACP only if a LACP device is detected
+
+
+# resume configurator MultySwitch
+
+en
+conf t
+int range fa0/1-2
+channel-protocol lacp
+channel-group 1 mode active
+end
+
+en
+conf t
+int range fa0/3-4
+channel-protocol lacp
+channel-group 2 mode active
+end
+
+en
+conf t
+int range fa0/5-6
+channel-protocol lacp
+channel-group 3 mode active
+end
+wr mem
+show run
+
+
+
+## resume configurator switch 0
+
+en
+conf t
+int range fa0/1-2
+channel-protocol lacp
+channel-group 1 mode passive
+end
+wr mem
+show run
+
+
+
+## resume configurator switch 1
+
+en
+conf t
+int range fa0/1-2
+channel-protocol lacp
+channel-group 2 mode passive
+end
+wr mem
+show run
+
+
+## resume configurator switch 2
+
+en
+conf t
+int range fa0/1-2
+channel-protocol lacp
+channel-group 3 mode passive
+end
+wr mem
+show run
+
+

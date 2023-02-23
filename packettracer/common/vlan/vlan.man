@@ -1,0 +1,191 @@
+# https://www.youtube.com/watch?v=b51lvU6tV_Y&list=PLcDkQ2Au8aVNYsqGsxRQxYyQijILa94T9&index=6
+
+    en
+    conf t
+
+## create vlan 
+
+    vlan 2
+
+    (config)#vlan 2
+
+    Switch(config)#vlan 2
+    Switch(config-vlan)#
+
+        Switch(config-vlan)#?
+        VLAN configuration commands:
+          exit         Apply changes, bump revision number, and exit mode
+          name         Ascii name of the VLAN
+          no           Negate a command or set its defaults
+
+    name buhgalt
+    exit
+    
+    (config-vlan)#name buhgalt
+
+    Switch(config-vlan)#name buhgalt
+
+## define ports switch to accoding access vlans (port 0/1 as vlan 2)
+
+    interface fastEthernet 0/1
+    switchport mode acces
+    switchport access vlan 2
+    exit
+
+    (config)#interface fastEthernet 0/1
+    (config-if)#switchport mode access 
+    (config-if)#switchport access vlan 2
+
+## define ports switch to accoding trank vlans (GigabitEthernet 0/1 with vlan 2,3)
+
+    interface GigabitEthernet 0/1
+    switchport mode trunk 
+    switchport trunk allowed vlan 2,3
+
+    (config)#interface GigabitEthernet 0/1
+    (config-if)#switchport mode trunk 
+    (config-if)#switchport trunk allowed vlan 2,3
+
+## show vlan
+
+    Switch#show vlan 
+
+        VLAN Name                             Status    Ports
+        ---- -------------------------------- --------- -------------------------------
+        1    default                          active    Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                        Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                        Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                        Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                        Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                        Gig0/1, Gig0/2
+        2    VLAN0002                         active    Fa0/1, Fa0/2
+        3    piples                           active    Fa0/3, Fa0/4
+        1002 fddi-default                     active    
+        1003 token-ring-default               active    
+        1004 fddinet-default                  active    
+        1005 trnet-default                    active    
+        
+        VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+        ---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+        1    enet  100001     1500  -      -      -        -    -        0      0
+        2    enet  100002     1500  -      -      -        -    -        0      0
+        3    enet  100003     1500  -      -      -        -    -        0      0
+        1002 fddi  101002     1500  -      -      -        -    -        0      0   
+        1003 tr    101003     1500  -      -      -        -    -        0      0   
+        1004 fdnet 101004     1500  -      -      -        ieee -        0      0   
+        1005 trnet 101005     1500  -      -      -        ibm  -        0      0   
+        
+        VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+        ---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+        
+        Remote SPAN VLANs
+        ------------------------------------------------------------------------------
+        
+        Primary Secondary Type              Ports
+        ------- --------- ----------------- ------------------------------------------
+
+
+# short create trank port with vlans
+
+    {
+        conf t
+        interface GigabitEthernet 0/1
+        switchport mode trunk 
+        switchport trunk allowed vlan 2,3  
+        exit
+        exit  
+    }
+
+# short create vlan (2 buhgalt)
+
+    {
+        conf t
+        vlan 2
+        name buhgalt
+        exit
+    }
+
+# short bind port to vlan (0/1 -> vlan 2)
+
+    {
+        conf t
+        interface fastEthernet 0/1
+        switchport mode acces
+        switchport access vlan 2
+        exit   
+    }
+
+# switch configuration
+
+conf t
+vlan 2
+name buhgalt
+exit
+exit
+
+conf t
+vlan 3
+name piples
+exit
+exit
+
+conf t
+interface fastEthernet 0/1
+switchport mode acces
+switchport access vlan 2
+exit   
+exit
+
+conf t
+interface fastEthernet 0/2
+switchport mode acces
+switchport access vlan 2
+exit   
+exit
+
+conf t
+interface fastEthernet 0/3
+switchport mode acces
+switchport access vlan 3
+exit   
+exit
+
+conf t
+interface fastEthernet 0/4
+switchport mode acces
+switchport access vlan 3
+exit  
+exit 
+
+conf t
+interface GigabitEthernet 0/1
+switchport mode trunk 
+switchport trunk allowed vlan 2,3
+exit  
+exit 
+
+write memory 
+
+
+# pc configurator in vlan 2 (SINGL_ASTERISK)
+pseudo console:
+
+conf t
+interface fastEthernet 0
+ip address 192.168.2.1 255.255.255.0
+no shutdown 
+
+conf t
+interface fastEthernet 0
+ip address 192.168.2.2 255.255.255.0
+no shutdown 
+
+conf t
+interface fastEthernet 0
+ip address 192.168.3.1 255.255.255.0
+no shutdown 
+
+conf t
+interface fastEthernet 0
+ip address 192.168.3.2 255.255.255.0
+no shutdown 

@@ -1,0 +1,12 @@
+
+
+
+## shot comands
+    >en
+        Switch>en
+        Switch#
+
+    #conf t
+        Switch#conf t
+        Enter configuration commands, one per line.  End with CNTL/Z.
+        Switch(config)#

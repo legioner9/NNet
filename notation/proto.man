@@ -1,0 +1,30 @@
+# Abbreviation
+
+- Rut       Router
+- Pc        Computer
+- Swh       Switch
+- L2, L3    level OSI
+- Pc::fa0   port
+- <->       bind
+- pseudo console mean action in gui
+- [Rut,...] unit contane dagram
+  
+
+# Prases
+
+- up vlan   create vlan
+
+.
+
+    # [Rut, L2, Pc0, Pc1, Pc2] - GLOBAL DEFINE
+    
+    ## L2 up vlan - ACTION
+    
+    ## Pc <-> L2
+    pseudo console
+    
+    Pc0::fa0<->L2::fa0/1
+    Pc1::fa0<->L2::fa0/2
+    Pc2::fa0<->L2::fa0/3
+
+    

@@ -1,0 +1,40 @@
+# [Rut, L2, Pc0, Pc1, Pc2]
+
+## L2 up vlan
+
+en
+conf t
+int vlan 2
+name VLAN2
+end
+
+en
+conf t
+int vlan 3
+name VLAN3
+end
+
+en
+conf t
+int vlan 4
+name VLAN4
+end
+
+wr mem
+show vlan
+
+## Pc <-> L2
+pseudo console
+
+Pc0::fa0<->L2::fa0/1
+Pc1::fa0<->L2::fa0/2
+Pc2::fa0<->L2::fa0/3
+
+## Rut <-> L2
+pseudo console
+
+Rut::fa0/0<->fa0/1
+
+## Rut <-> L2
+
+

@@ -1,0 +1,687 @@
+# NetSkills   
+
+https://www.youtube.com/watch?v=8iyyfPuJySs&list=PLcDkQ2Au8aVNYsqGsxRQxYyQijILa94T9&index=5
+
+## properties swiches:
+  - 2960 L2 level
+      - prop
+  - 3560 L3 level
+      - prop
+
+## mast have
+
+    Switch#wr mem
+
+    Switch#show run
+
+    Switch#show vlan
+
+    Switch#show etherchannel 
+    Switch#show etherchannel summary   
+    Switch#show etherchannel port-channel
+
+    Switch#show spanning-tree
+
+## Switch>
+    {?
+    Exec commands:
+      connect     Open a terminal connection
+      disable     Turn off privileged commands
+      disconnect  Disconnect an existing network connection
+      enable      Turn on privileged commands
+      exit        Exit from the EXEC
+      logout      Exit from the EXEC
+      ping        Send echo messages
+      resume      Resume an active network connection
+      show        Show running system information
+      telnet      Open a telnet connection
+      terminal    Set terminal line parameters
+      traceroute  Trace route to destination
+    }
+
+## Switch>
+{enable
+Switch#
+}
+
+## Switch#
+    {?
+    Exec commands:
+      clear       Reset functions
+      clock       Manage the system clock
+      configure   Enter configuration mode
+      connect     Open a terminal connection
+      copy        Copy from one file to another
+      debug       Debugging functions (see also 'undebug')
+      delete      Delete a file
+      dir         List files on a filesystem
+      disable     Turn off privileged commands
+      disconnect  Disconnect an existing network connection
+      enable      Turn on privileged commands
+      erase       Erase a filesystem
+      exit        Exit from the EXEC
+      logout      Exit from the EXEC
+      more        Display the contents of a file
+      no          Disable debugging informations
+      ping        Send echo messages
+      reload      Halt and perform a cold restart
+      resume      Resume an active network connection
+      setup       Run the SETUP command facility
+      show        Show running system information
+      ssh         Open a secure shell client connection
+      telnet      Open a telnet connection
+      terminal    Set terminal line parameters
+      traceroute  Trace route to destination
+      undebug     Disable debugging functions (see also 'debug')
+      vlan        Configure VLAN parameters
+      write       Write running configuration to memory, network, or terminal
+    }
+
+         
+        Switch>connect ?
+          WORD  IP address or hostname of a remote system
+        
+        Switch#clock ?
+          set  Set the time and date
+        
+        Switch#configure ?
+          terminal  Configure from the terminal
+        
+        Switch#connect ?
+          WORD  IP address or hostname of a remote system
+        
+        Switch#copy ?
+          flash:          Copy from flash: file system
+          ftp:            Copy from ftp: file system
+          running-config  Copy from current system configuration
+          scp:            Copy from scp: file system
+          startup-config  Copy from startup configuration
+          tftp:           Copy from tftp: file system
+        
+        Switch#debug ?
+          ip       IP information
+          sw-vlan  vlan manager
+        
+        Switch#delete ?
+          WORD    File to be deleted
+          flash:  File to be deleted
+        
+        Switch#dir ?
+          flash:  Directory or file name
+          nvram:  Directory or file name
+        
+        Switch#disconnect ?
+          <1-16>  The number of an active network connection
+        
+        Switch#enable ?
+          <0-15>  Enable level
+        
+        Switch#erase ?
+          startup-config  Erase contents of configuration memory
+        
+        Switch#ping ?
+          WORD  Ping destination address or hostname
+        
+        Switch#resume ?
+          <1-16>  The number of an active network connection
+          WORD    The name of an active network connection or Connection options
+        
+        Switch#show ?
+
+          access-lists       List access lists
+              Switch#show access-lists ?
+              <1-199>  ACL number
+              WORD     ACL name
+              |        Output Modifiers
+
+          arp                Arp table
+
+          boot               show boot attributes
+
+              Switch#show  boot 
+                BOOT path-list      : 
+                Config file         : flash:/config.text
+                Private Config file : flash:/private-config.text
+                Enable Break        : no
+                Manual Boot         : no
+                HELPER path-list    : 
+                Auto upgrade        : yes
+                NVRAM/Config file
+                      buffer size:   65536
+
+          cdp                CDP information
+
+              Switch#show  cdp
+                Global CDP information:
+                    Sending CDP packets every 60 seconds
+                    Sending a holdtime value of 180 seconds
+                    Sending CDPv2 advertisements is enabled
+
+          clock              Display the system clock
+
+              Switch#show  clock 
+              *0:21:29.726 UTC Mon Mar 1 1993
+
+          crypto             Encryption module
+
+              Switch#show  crypto ?
+              key  Show long term public keys
+
+          dtp                DTP information
+
+              Switch#show  dtp 
+                Global DTP information
+                    Sending DTP Hello packets every 30 seconds
+                    Dynamic Trunk timeout is 300 seconds
+                    0 interfaces using DTP
+
+          etherchannel       EtherChannel information
+
+              Switch#show  etherchannel ?
+              load-balance  Load-balance/frame-distribution scheme among ports in
+                            port-channel
+              port-channel  Port-channel information
+              summary       One-line summary per channel-group
+
+          flash              display information about flash: file system
+
+              Switch#show  flash 
+                Directory of flash:/
+                
+                    1  -rw-     3058048          <no date>  c2950-i6q4l2-mz.121-22.EA4.bin
+                
+                64016384 bytes total (60958336 bytes free)
+
+          history            Display the session command history
+
+              Switch#show  history 
+              enable 
+              show
+
+          hosts              IP domain-name, lookup style, nameservers, and host 
+          
+              Switch#show  hosts 
+                Default Domain is not set
+                Name/address lookup uses domain service
+                Name servers are 255.255.255.255
+                
+                Codes: UN - unknown, EX - expired, OK - OK, ?? - revalidate
+                       temp - temporary, perm - permanent
+                       NA - Not Applicable None - Not defined
+                
+                Host                      Port  Flags      Age Type   Address(es)
+
+    
+          interfaces         Interface status and configuration
+
+              Switch#show interfaces ?
+              Ethernet         IEEE 802.3
+              FastEthernet     FastEthernet IEEE 802.3
+              GigabitEthernet  GigabitEthernet IEEE 802.3z
+              Port-channel     Ethernet channel port interface
+              Vlan             Catalyst Vlans
+              etherchannel     Show interface etherchannel information
+              status           interface line status
+              switchport       Show interface switchport information
+              trunk            Show interface trunk information
+              |                Output Modifiers
+
+          ip                 IP information
+
+              Switch#show ip ?
+              access-lists  List access lists
+              arp           IP ARP table
+              dhcp          Show items in the DHCP database
+              interface     IP interface status and configuration
+              ssh           Information on SSH
+
+          lldp               LLDP information
+
+              Switch#show lldp ?
+              neighbors  LLDP neighbor entries
+
+          logging            Show the contents of logging buffers
+
+              Switch#show logging 
+                Syslog logging: enabled (0 messages dropped, 0 messages rate-limited,
+                          0 flushes, 0 overruns, xml disabled, filtering disabled)
+                
+                No Active Message Discriminator.
+                
+                
+                No Inactive Message Discriminator.
+                
+                
+                    Console logging: level debugging, 0 messages logged, xml disabled,
+                          filtering disabled
+                    Monitor logging: level debugging, 0 messages logged, xml disabled,
+                          filtering disabled
+                    Buffer logging:  disabled, xml disabled,
+                          filtering disabled
+                
+                    Logging Exception size (4096 bytes)
+                    Count and timestamp logging messages: disabled
+                    Persistent logging: disabled
+                
+                No active filter modules.
+                
+                ESM: 0 messages dropped
+                    Trap logging: level informational, 0 message lines logged
+
+          mac                MAC configuration
+
+              Switch#show logging 
+                Syslog logging: enabled (0 messages dropped, 0 messages rate-limited,
+                          0 flushes, 0 overruns, xml disabled, filtering disabled)
+                
+                No Active Message Discriminator.
+                
+                
+                No Inactive Message Discriminator.
+                
+                
+                    Console logging: level debugging, 0 messages logged, xml disabled,
+                          filtering disabled
+                    Monitor logging: level debugging, 0 messages logged, xml disabled,
+                          filtering disabled
+                    Buffer logging:  disabled, xml disabled,
+                          filtering disabled
+                
+                    Logging Exception size (4096 bytes)
+                    Count and timestamp logging messages: disabled
+                    Persistent logging: disabled
+                
+                No active filter modules.
+                
+                ESM: 0 messages dropped
+                    Trap logging: level informational, 0 message lines logged
+
+          mac-address-table  MAC forwarding table
+
+              Switch#show mac-address-table
+                        Mac Address Table
+              -------------------------------------------
+              
+              Vlan    Mac Address       Type        Ports
+              ----    -----------       --------    -----
+
+          mls                Show MultiLayer Switching information
+
+              Switch#show mls ?
+              qos  Show QoS information
+
+          monitor            SPAN information and configuration
+
+              Switch#show monitor ?
+              detail   SPAN details
+              session  SPAN session information and configuration
+              |        Output Modifiers
+
+          ntp                Network time protocol
+
+              Switch#show ntp ?
+              associations  NTP associations
+              status        NTP status
+
+          port-security      Show secure port information
+
+              Switch#show port-security ?
+              address    Show secure address
+              interface  Show secure interface
+
+          privilege          Show current privilege level
+
+              Switch#show privilege 
+              Current privilege level is 15
+
+          processes          Active process statistics
+
+              Switch#show processes 
+              CPU utilization for five seconds: 0%/0%; one minute: 0%; five minutes: 0%
+                PID QTy       PC Runtime (ms)    Invoked  uSecs     Stacks TTY Process
+                  1 Csp 602F3AF0            0       1627       0 2600/3000   0 Load Meter 
+                  2 Lwe 60C5BE00            4        136      29 5572/6000   0 CEF Scanner 
+                  3 Lst 602D90F8         1676        837    2002 5740/6000   0 Check heaps 
+                  4 Cwe 602D08F8            0          1       0 5568/6000   0 Chunk Manager 
+
+          running-config     Current operating configuration
+
+              how run
+              Building configuration...
+              
+              Current configuration : 1080 bytes
+              !
+              version 12.1
+              no service timestamps log datetime msec
+              no service timestamps debug datetime msec
+              no service password-encryption
+              !
+              ...
+
+          sessions           Information about Telnet connections
+
+              Switch#show sessions
+              % No connections open
+
+          snmp               snmp statistics
+
+              Switch#show sessions
+              % No connections open
+
+          spanning-tree      Spanning tree topology
+
+              Switch#show spanning-tree ?
+              active             Report on active interfaces only
+              detail             Detailed information
+              inconsistentports  Show inconsistent ports
+              interface          Spanning Tree interface status and configuration
+              summary            Summary of port states
+              vlan               VLAN Switch Spanning Trees
+
+          ssh                Status of SSH server connections
+
+              Switch#show ssh 
+              %No SSHv2 server connections running.
+              %No SSHv1 server connections running.
+
+          startup-config     Contents of startup configuration
+
+              Switch#show ssh 
+              %No SSHv2 server connections running.
+              %No SSHv1 server connections running.
+
+          storm-control      Show storm control configuration
+
+              Switch#show storm-control ?
+              broadcast  Broadcast storm control
+
+          tcp                Status of TCP connections
+
+              Switch#show tcp ?
+              brief  Brief display
+
+          tech-support       Show system information for Tech-Support
+
+              Switch#show tech-support 
+              Cisco Internetwork Operating System Software
+              IOS (tm) C2950 Software (C2950-I6Q4L2-M), Version 12.1(22)EA4, RELEASE SOFTWARE(fc1)
+              Copyright (c) 1986-2005 by cisco Systems, Inc.
+              Compiled Wed 18-May-05 22:31 by jharirba
+              Image text-base: 0x80010000, data-base: 0x80562000
+              
+              ROM: Bootstrap program is is C2950 boot loader
+              ...
+
+          terminal           Display terminal configuration parameters
+
+              Switch#show terminal 
+              Line 0, Location: , Type: 
+              Length: 24 lines, Width: 80 columns
+              Baud rate (TX/RX) is 9600/9600, no parity, 1 stopbits, 8 databits
+              Status: PSI Enabled, Ready, Active, Automore On
+              Capabilities: none
+              Modem state: Ready
+              Modem hardware state: CTS* noDSR  DTR RTS
+              Special Chars: Escape  Hold  Stop  Start  Disconnect  Activation
+                              ^^x    none   -     -       none
+              Timeouts:      Idle EXEC    Idle Session   Modem Answer  Session   Dispatch
+                              00:10:00        never                        none     not set
+                                          Idle Session Disconnect Warning
+                                            never
+                                          Login-sequence User Response
+                                            00:00:30
+                                          Autoselect Initial Wait
+                                            not set
+              Modem type is unknown.
+              Session limit is not set.
+              Time since activation: 00:03:04
+              Editing is enabled.
+              History is enabled, history size is 10.
+              DNS resolution in show commands is enabled
+              Full user help is disabled
+              Allowed input transports are All.
+              Allowed output transports are pad telnet rlogin.
+              Preferred transport is telnet.
+              No output characters are padded
+              No special data dispatching characters
+
+          users              Display information about terminal lines
+
+              Switch#show users 
+                  Line       User       Host(s)              Idle       Location
+              *  0 con 0                idle                 00:00:00 
+              
+                Interface    User               Mode         Idle     Peer Address
+
+          version            System hardware and software status
+
+              Switch#show version 
+              Cisco Internetwork Operating System Software
+              IOS (tm) C2950 Software (C2950-I6Q4L2-M), Version 12.1(22)EA4, RELEASE SOFTWARE(fc1)
+              Copyright (c) 1986-2005 by cisco Systems, Inc.
+              Compiled Wed 18-May-05 22:31 by jharirba
+              Image text-base: 0x80010000, data-base: 0x80562000
+        
+              ROM: Bootstrap program is is C2950 boot loader
+
+          vlan               VTP VLAN status
+
+              Switch#show vlan 
+
+              VLAN Name                             Status    Ports
+              ---- -------------------------------- --------- -------------------------------
+              1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                              Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                              Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                              Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                              Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                              Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                              Gig0/1, Gig0/2
+              1002 fddi-default                     active    
+              1003 token-ring-default               active    
+              1004 fddinet-default                  active    
+              1005 trnet-default                    active    
+              
+              VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+              ---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+              1    enet  100001     1500  -      -      -        -    -        0      0
+              1002 fddi  101002     1500  -      -      -        -    -        0      0   
+              1003 tr    101003     1500  -      -      -        -    -        0      0   
+              1004 fdnet 101004     1500  -      -      -        ieee -        0      0   
+              1005 trnet 101005     1500  -      -      -        ibm  -        0      0   
+                
+                VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+            ---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+        
+            Remote SPAN VLANs
+            ------------------------------------------------------------------------------
+    
+            Primary Secondary Type              Ports
+            ------- --------- ----------------- ------------------------------------------
+
+          vtp                VTP information
+
+              Switch#show vtp ?
+              counters  VTP statistics
+              password  VTP password
+              status    VTP domain status
+        
+        Switch# ssh ?
+          -l  Log in using this user name
+          -v  Specify SSH Protocol Version
+        
+        Switch#telnet ?
+          WORD  IP address or hostname of a remote system
+        
+        Switch#terminal ?
+          history  Enable and control the command history function
+          monitor  Enable logging on the terminal line.
+          no       Negate a command
+        
+        Switch#traceroute ?
+          WORD  Trace route to destination address or hostname
+        
+        Switch#vlan ?
+          database  Configure VLAN database
+        
+        Switch#write ?
+          erase     Erase NV memory
+          memory    Write to NV memory
+          terminal  Write to terminal
+    
+    
+## Switch#configure terminal (conf t)
+
+    Switch(config)#
+
+        do show run   -> see run-config from any mode
+
+### scrt and pswd for (#)
+
+        enable password 123    -> set pswd for (#)
+        service password-encryption    -> encrypt password
+
+        enable secret 234  -> set scrt for (#) [nobe: if enable scrt - demand first scrt, pswd second priority ]
+
+### create user
+
+        Switch(config)#username admin ?
+            password   Specify the password for the user
+            privilege  Set user privilege level
+            secret     Specify the secret for the user
+
+        Switch(config)#username admin privilege 15 password 123
+
+### authorization to connect to the console (local base to check user and pswd )
+
+        Switch(config)#line ?
+            <0-16>   First Line number
+            console  Primary terminal line
+            vty      Virtual terminal
+
+        Switch(config)#line console ?
+            <0-0>  First Line number
+
+
+#### enter to (config-line) console
+
+        Switch(config)#line console 0
+        Switch(config-line)#
+
+        Switch(config-line)#?
+            Line configuration commands:
+              access-class  Filter connections based on an IP access list
+              databits      Set number of data bits per character
+              default       Set a command to its defaults
+              exec-timeout  Set the EXEC timeout
+              exit          Exit from line configuration mode
+              flowcontrol   Set the flow control
+              history       Enable and control the command history function
+              logging       Modify message logging facilities
+              login         Enable password checking
+              motd-banner   Enable the display of the MOTD banner
+              no            Negate a command or set its defaults
+              parity        Set terminal parity
+              password      Set a password
+              privilege     Change privilege level for line
+              speed         Set the transmit and receive speeds
+              stopbits      Set async line stop bits
+              transport     Define transport protocols for line
+        
+        Switch(config-line)#login ?
+              local  Local password checking
+
+        Switch(config-line)#login local
+
+#### exit to (#)
+
+        Switch(config-line)#end
+
+### difine ip devise
+
+        Switch(config)#interface ?
+            Ethernet         IEEE 802.3
+            FastEthernet     FastEthernet IEEE 802.3
+            GigabitEthernet  GigabitEthernet IEEE 802.3z
+            Port-channel     Ethernet Channel of interfaces
+            Vlan             Catalyst Vlans
+            range            interface range command                
+
+#### enter to (config-if)
+
+        Switch(config)#interface VLan1 
+        Switch(config-if)#
+
+        Switch(config-if)#?
+            Interface configuration commands:
+              arp          Set arp type (arpa, probe, snap) or timeout
+              description  Interface specific description
+              exit         Exit from interface configuration mode
+              ip           Interface Internet Protocol config commands
+              no           Negate a command or set its defaults
+              shutdown     Shutdown the selected interface
+              standby      HSRP interface configuration commands
+
+        Switch(config-if)#ip ?
+              address         Set the IP address of an interface
+              helper-address  Specify a destination address for UDP broadcasts
+
+#### define ip and mask
+
+        Switch(config-if)#ip address 192.168.0.1 255.255.255.0
+        Switch(config-if)#no shutdown 
+
+### configure virtual terminal line
+
+        SSwitch(config)#line ?
+            <0-16>   First Line number
+            console  Primary terminal line
+            vty      Virtual terminal
+
+#### enter to (config-line) virtual
+
+        Switch(config)#line vty 0 4
+        Switch(config-line)#
+
+        Switch(config-line)#?
+            Virtual Line configuration commands:
+              access-class  Filter connections based on an IP access list
+              databits      Set number of data bits per character
+              exec-timeout  Set the EXEC timeout
+              exit          Exit from line configuration mode
+              flowcontrol   Set the flow control
+              history       Enable and control the command history function
+              logging       Modify message logging facilities
+              login         Enable password checking
+              motd-banner   Enable the display of the MOTD banner
+              no            Negate a command or set its defaults
+              parity        Set terminal parity
+              password      Set a password
+              privilege     Change privilege level for line
+              speed         Set the transmit and receive speeds
+              stopbits      Set async line stop bits
+              transport     Define transport protocols for line
+
+        Switch(config-line)#transport ?
+              input   Define which protocols to use when connecting to the terminal server
+              output  Define which protocols to use for outgoing connections
+
+        Switch(config-line)#transport input ?
+              all     All protocols
+              none    No protocols
+              ssh     TCP/IP SSH protocol
+              telnet  TCP/IP Telnet protocol
+
+#### define transport protocol
+        Switch(config-line)#transport input telnet 
+
+#### define local base to authorize
+        Switch(config-line)#login local 
+
+        Switch(config-line)#end
+
+#### save configuratin 
+        Switch#wr mem
+            Building configuration...
+            [OK]
+        

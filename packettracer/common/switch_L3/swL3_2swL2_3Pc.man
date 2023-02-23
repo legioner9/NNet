@@ -1,0 +1,129 @@
+## L2 switch define port -> vlan
+
+{%Access VLAN does not exist. Creating vlan 2}
+{for Switch0 and Switch1}
+en 
+conf t
+int fa0/1
+switchport mode access 
+switchport access vlan 2
+end
+
+en 
+conf t
+int fa0/2
+switchport mode access 
+switchport access vlan 3
+end
+
+wr mem
+show run
+show vlan
+
+
+## L2 trunk port 
+
+{for Switch0 and Switch1}
+
+en 
+conf t
+int gi0/1
+switchport mode trunk
+switchport trunk allowed vlan 2,3
+end
+
+wr mem
+show run
+show vlan
+
+## L3 vlan
+
+en
+conf t
+vlan 2
+name VLAN2
+end
+
+en
+conf t
+vlan 3
+name VLAN3
+end
+
+wr mem
+
+show vlan
+
+## L3 bind vlan -> ip
+
+en
+conf t
+int vlan 2
+ip address 2.2.2.1 255.255.255.0
+end
+
+en
+conf t
+int vlan 3
+ip address 3.3.3.1 255.255.255.0
+end
+
+wr mem
+
+show run
+show vlan
+
+## L3 trunk
+
+en 
+conf t
+int gi0/1
+switchport trunk encapsulation dot1q 
+switchport mode trunk
+switchport trunk allowed vlan 2,3
+end
+
+en 
+conf t
+int gi0/2
+switchport trunk encapsulation dot1q 
+switchport mode trunk
+switchport trunk allowed vlan 2,3
+end
+
+wr mem
+show run
+show vlan
+
+## L3 routing (??? vlan 2 ~ vlan 3 after ip routing ???)
+
+{en
+conf t
+ip routing
+end}
+
+wr mem
+show run
+
+## PC configurator port
+pseudo console
+
+PC0>
+int fa0
+ip address 2.2.2.2 255.255.255.0
+getaway 2.2.2.1
+
+PC1>
+int fa0
+ip address 3.3.3.2 255.255.255.0
+getaway 3.3.3.1
+
+PC2>
+int fa0
+ip address 2.2.2.2 255.255.255.0
+getaway 2.2.2.1
+
+PC3>
+int fa0
+ip address 3.3.3.2 255.255.255.0
+getaway 3.3.3.1

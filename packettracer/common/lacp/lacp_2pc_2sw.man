@@ -1,0 +1,20 @@
+## Ethernet Channal
+
+## switch 1
+
+conf t
+int range fa0/1-2
+channel-group 1 mode on
+
+
+Switch(config)#int range fa0/1-2
+Switch(config-if-range)#
+
+    Switch(config-if-range)#channel?
+    channel-group  channel-protocol  
+
+Switch(config-if-range)#channel-group 1 mode on
+Switch(config-if-range)#
+Creating a port-channel interface Port-channel 1
+
+

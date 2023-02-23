@@ -1,0 +1,118 @@
+## L3 switch configuration (? all vlan routing ???)
+
+    en
+    conf t 
+
+### create vlans
+
+    vlan 2
+
+
+    Switch(config-vlan)#?
+        VLAN configuration commands:
+            exit         Apply changes, bump revision number, and exit mode
+            name         Ascii name of the VLAN
+            no           Negate a command or set its defaults
+            remote-span  Add the Remote Switched Port Analyzer (RSPAN) feature to the VLAN
+
+    name VLAN2
+
+    Switch(config-vlan)#name VLAN2
+
+## L3 configurator vlans
+
+    
+en
+conf t
+vlan 2
+name VLAN2
+end
+wr mem
+
+en
+conf t
+vlan 3
+name VLAN3
+end
+wr mem
+
+en
+conf t
+vlan 4
+name VLAN4
+end
+wr mem
+
+show vlan
+
+## L3 configurator port
+
+en
+conf t
+int fa0/1
+switchport mode access
+switchport access vlan 2
+end
+
+en
+conf t
+int fa0/2
+switchport mode access
+switchport access vlan 3
+end
+
+en
+conf t
+int fa0/3
+switchport mode access
+switchport access vlan 4
+end
+
+wr mem
+show run
+
+## L3 bind vlan -> ip
+
+en
+conf t
+int vlan 2
+ip address 2.2.2.1 255.255.255.0
+end
+
+en
+conf t
+int vlan 3
+ip address 3.3.3.1 255.255.255.0
+end
+
+en
+conf t
+int vlan 4
+ip address 4.4.4.1 255.255.255.0
+end
+
+en
+conf t
+ip routing
+end
+
+wr mem
+show run
+
+## PC configurator port
+pseudo console
+
+PC0>
+int fa0
+ip address 2.2.2.2 255.255.255.0
+getaway 2.2.2.1
+
+PC1>
+int fa0
+ip address 3.3.3.2 255.255.255.0
+getaway 3.3.3.1
+
+PC2>
+int fa0
+ip address 4.4.4.2 255.255.255.0
+getaway 4.4.4.1

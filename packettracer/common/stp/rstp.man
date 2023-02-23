@@ -1,0 +1,50 @@
+## switch 1 (root) (Priority    32769)
+ 
+    Switch#show spanning-tree 
+    VLAN0001
+      Spanning tree enabled protocol ieee
+      Root ID    Priority    32769
+                 Address     000D.BDD5.5926
+                 This bridge is the root
+                 Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+    
+      Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+                 Address     000D.BDD5.5926
+                 Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+                 Aging Time  20
+    
+    Interface        Role Sts Cost      Prio.Nbr Type
+    ---------------- ---- --- --------- -------- --------------------------------
+    Fa0/2            Desg FWD 19        128.2    P2p
+    Fa0/1            Desg FWD 19        128.1    P2p
+
+## check stp working - switch 0 shutdown port fa0/1 
+
+Switch#conf t
+Switch(config)#interface fa0/1
+Switch(config-if)#shutdown 
+Switch(config-if)#no shutdown 
+
+## stp -> rstp
+
+Switch(config)#spanning-tree mode rapid-pvst 
+
+Switch#show spanning-tree 
+VLAN0001
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    32769
+             Address     0007.EC11.9E89
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     0007.EC11.9E89
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Fa0/1            Desg LSN 19        128.1    P2p
+Fa0/3            Desg FWD 19        128.3    P2p
+Fa0/2            Desg LSN 19        128.2    P2p
+
