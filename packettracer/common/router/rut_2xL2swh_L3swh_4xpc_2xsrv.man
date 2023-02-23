@@ -1,0 +1,249 @@
+# [Rut, 4xPc, 3xL2Swh, L3Swh, 2xsrv]
+
+## L2 Swh0 -----
+
+en
+conf t
+vlan 2
+name VLAN2
+end
+
+en
+conf t
+vlan 3
+name VLAN3
+end
+
+en 
+conf t
+int fa0/1
+switchport mode access 
+switchport access vlan 2
+end
+
+en 
+conf t
+int fa0/2
+switchport mode access 
+switchport access vlan 3
+end
+
+en 
+conf t
+int gi0/1
+switchport mode trunk
+switchport trunk allowed vlan 2,3
+end
+
+wr mem
+show run
+show vlan
+
+## L2 Swh1 -----
+
+en
+conf t
+vlan 2
+name VLAN2
+end
+
+en
+conf t
+vlan 3
+name VLAN3
+end
+
+en 
+conf t
+int fa0/1
+switchport mode access 
+switchport access vlan 2
+end
+
+en 
+conf t
+int fa0/2
+switchport mode access 
+switchport access vlan 3
+end
+
+en 
+conf t
+int gi0/1
+switchport mode trunk
+switchport trunk allowed vlan 2,3
+end
+
+wr mem
+show run
+show vlan
+
+## L2 Swh3 -----
+
+en
+conf t
+vlan 4
+name VLAN4
+end
+
+en 
+conf t
+int fa0/1
+switchport mode access 
+switchport access vlan 4
+end
+
+en 
+conf t
+int fa0/2
+switchport mode access 
+switchport access vlan 4
+end
+
+en 
+conf t
+int gi0/1
+switchport mode trunk
+switchport trunk allowed vlan 4
+end
+
+wr mem
+show run
+show vlan
+
+wr mem
+show run
+show vlan
+
+## L3 -----
+
+en
+conf t
+vlan 2
+name VLAN2
+end
+
+en
+conf t
+vlan 3
+name VLAN3
+end
+
+en
+conf t
+vlan 4
+name VLAN4
+end
+
+conf t
+int vlan 2
+ip address 2.2.2.1 255.255.255.0
+end
+
+en
+conf t
+int vlan 3
+ip address 3.3.3.1 255.255.255.0
+end
+
+en
+conf t
+int vlan 4
+ip address 4.4.4.1 255.255.255.0
+end
+
+<!-- en
+conf t
+int vlan 5
+ip address 5.5.5.1 255.255.255.0
+end -->
+
+en 
+conf t
+int gi0/2
+switchport trunk encapsulation dot1q 
+switchport mode trunk
+switchport trunk allowed vlan 2,3,4
+end
+
+en 
+conf t
+int fa0/1
+switchport trunk encapsulation dot1q 
+switchport mode trunk
+switchport trunk allowed vlan 2,3
+end
+
+en 
+conf t
+int fa0/2
+switchport trunk encapsulation dot1q 
+switchport mode trunk
+switchport trunk allowed vlan 2,3
+end
+
+en 
+conf t
+int fa0/3
+switchport trunk encapsulation dot1q 
+switchport mode trunk
+switchport trunk allowed vlan 4
+end
+
+wr mem
+show run
+show vlan
+
+## Rut -----
+
+en
+conf t
+int fa0/0
+no shutdown
+end
+
+en
+conf t
+int fa0/0.2
+encapsulation dot1Q 2
+ip address 192.168.22.1 255.255.255.0
+no shutdown
+end
+
+en
+conf t
+int fa0/0.3
+encapsulation dot1Q 3
+ip address 192.168.33.1 255.255.255.0
+no shutdown
+end
+
+en
+conf t
+int fa0/0.4
+encapsulation dot1Q 4
+ip address 192.168.44.1 255.255.255.0
+no shutdown
+end
+
+wr mem
+show run
+show vlan
+
+## Pc <-> L2 <-> L3 <-> Rut
+pseudo console
+
+Pc0::fa0<->L2Swh0::fa0/1
+Pc1::fa0<->L2Swh0::fa0/2
+Pc2::fa0<->L2Swh1::fa0/1
+Pc3::fa0<->L2Swh1::fa0/2
+
+Srv0::fa0<->L2Swh2::fa0/1
+Srv1::fa0<->L2Swh2::fa0/2
+
+L2Swh0::gi0/1<->L3::fa0/1
+L2Swh0::gi0/2<->L3::fa0/2
+L2Swh0::gi0/3<->L3::fa0/3
+
+L3::gi0/1<->Rut::gi0/0
+

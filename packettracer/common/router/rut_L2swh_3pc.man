@@ -24,7 +24,7 @@ wr mem
 show run
 show vlan
 
-## L2 port <-> vlan
+## L2 port <-> vlan (!!! L2 not separate vlans !!!)
 
 en
 conf t
@@ -55,9 +55,54 @@ show vlan
 
 en
 conf t
-int fa0/4
+int gi0/1
+switchport mode trunk
+switchport trunk allowed vlan 2,3,4
+end
 
+wr mem
+show run
+show vlan
 
+## Rut no shutdown port
+
+en
+conf t
+int fa0/0
+no shutdown
+
+## Rut configurator sub int
+
+### dot1Q 2 - alloued vlan 2 
+### 192.168.2.1 - subnet vlan 2
+
+en
+conf t
+int fa0/0.2
+encapsulation dot1Q 2
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+end
+
+en
+conf t
+int fa0/0.3
+encapsulation dot1Q 3
+ip address 192.168.3.1 255.255.255.0
+no shutdown
+end
+
+en
+conf t
+int fa0/0.4
+encapsulation dot1Q 4
+ip address 192.168.4.1 255.255.255.0
+no shutdown
+end
+
+wr mem
+show run
+show vlan
 
 ## Pc <-> L2
 pseudo console
@@ -71,6 +116,5 @@ pseudo console
 
 Rut::fa0/0<->fa0/1
 
-## Rut <-> L2
 
 
