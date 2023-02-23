@@ -4,24 +4,55 @@
 
 en
 conf t
-int vlan 2
+vlan 2
 name VLAN2
 end
 
 en
 conf t
-int vlan 3
+vlan 3
 name VLAN3
 end
 
 en
 conf t
-int vlan 4
+vlan 4
 name VLAN4
 end
 
 wr mem
+show run
 show vlan
+
+## L2 port <-> vlan
+
+en
+conf t
+int fa0/1
+switchport mode access 
+switchport access vlan 2
+end
+
+en
+conf t
+int fa0/2
+switchport mode access 
+switchport access vlan 3
+end
+
+en
+conf t
+int fa0/3
+switchport mode access 
+switchport access vlan 4
+end
+
+wr mem
+show run
+show vlan
+
+
+
 
 ## Pc <-> L2
 pseudo console
