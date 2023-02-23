@@ -5,8 +5,9 @@
 - Swh       Switch
 - L2, L3    level OSI
 - Pc::fa0   port
+- Pc0::: ip address 2.2.2.2 - config gui
 - <->       bind
-- pseudo console mean action in gui
+- pseudo console - mean action in gui
 - [Rut,...] unit contane dagram
   
 
@@ -26,5 +27,7 @@
     Pc0::fa0<->L2::fa0/1
     Pc1::fa0<->L2::fa0/2
     Pc2::fa0<->L2::fa0/3
+
+    Pc0::: ip address 2.2.2.2 255.255.255.0 gateway 192.168.22.1
 
     
