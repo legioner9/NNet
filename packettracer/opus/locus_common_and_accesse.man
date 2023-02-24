@@ -1,0 +1,40 @@
+# common commands
+
+en
+conf t
+wr mem
+do show run
+do show vlan
+
+# accesses secure
+
+## password to(#)
+        
+        {but not secur wlow}
+    (config)#enable password 123
+        {encript that password}
+    (config)#service password-encryption 
+
+## secret to(#)
+
+    (config)#enable secret 234    
+
+## create user
+
+    (config)#username adm privilege 15 password 345 
+        {enter confgugator accesses to console that devise}
+
+## configurator accesses to console
+
+    (config)#line console 0
+        {using locale database users for accesses}
+    (config-line)#login local 
+
+## configurator accesses to vty - virtual terminal
+
+        {enter configurator vty}
+    (config)#line vty 0 4
+        {or ssh}
+    (config-line)#transport input telnet 
+        {usig local base}
+    (config-line)#login local 
