@@ -5,6 +5,7 @@ conf t
 wr mem
 do show run
 do show vlan
+do show mac address-table 
 
 # accesses secure
 

@@ -1,0 +1,153 @@
+# Swh0 L2 --------------------
+
+en
+conf t
+vlan 2
+name vlan2
+end
+
+en
+conf t
+vlan 3
+name vlan3
+end
+
+en
+conf t
+int fa0/1
+switchport mode access 
+switchport access vlan 2
+end
+
+en
+conf t
+int fa0/2
+switchport mode access 
+switchport access vlan 3
+end
+
+en
+conf t
+int fa0/3
+switchport mode access 
+switchport access vlan 2
+end
+
+en
+conf t
+int fa0/4
+switchport mode access 
+switchport access vlan 3
+end
+
+wr mem
+
+# Connecorts -----------------
+
+Pc0::fa0<->L2::fa0/1
+Pc1::fa0<->L2::fa0/2
+Pc2::fa0<->L2::fa0/3
+Pc4::fa0<->L2::fa0/4
+
+Pc0::: ip address 192.168.2.2 255.255.255.0
+Pc1::: ip address 192.168.3.2 255.255.255.0
+Pc2::: ip address 192.168.2.3 255.255.255.0
+Pc3::: ip address 192.168.3.3 255.255.255.0
+
+# ping 
+Pc0+Pc2
+Pc0-Pc1
+
+
+# Swh1 L2 --------------------
+
+en
+conf t
+vlan 2
+name vlan2
+end
+
+en
+conf t
+vlan 3
+name vlan3
+end
+
+en
+conf t
+int fa0/1
+switchport mode access 
+switchport access vlan 2
+end
+
+en
+conf t
+int fa0/2
+switchport mode access 
+switchport access vlan 3
+end
+
+en
+conf t
+int fa0/3
+switchport mode access 
+switchport access vlan 2
+end
+
+en
+conf t
+int fa0/4
+switchport mode access 
+switchport access vlan 3
+end
+
+wr mem
+
+# Connecorts -----------------
+
+Pc4::fa0<->L2::fa0/1
+Pc5::fa0<->L2::fa0/2
+Pc6::fa0<->L2::fa0/3
+Pc7::fa0<->L2::fa0/4
+
+Pc4::: ip address 192.168.2.4 255.255.255.0
+Pc5::: ip address 192.168.3.4 255.255.255.0
+Pc6::: ip address 192.168.2.5 255.255.255.0
+Pc7::: ip address 192.168.3.5 255.255.255.0
+
+# ping -----------------
+Pc4+Pc6
+Pc4-Pc7
+
+# Swh0 L2 (add 1) -------------------
+
+en
+conf t
+int gi0/1
+switchport mode trunk
+switchport trunk allowed vlan 2,3
+end
+
+wr mem
+
+
+# Swh1 L2 (add 1) -------------------
+
+en
+conf t
+int gi0/1
+switchport mode trunk
+switchport trunk allowed vlan 2,3
+end
+
+wr mem
+
+# Connecorts (add 1) -----------------
+
+Swh0/L2::gi0/1<->Swh1/L2::gi0/1
+
+
+# ping (add 1) -----------------
+
+Pc0+Pc6
+Pc0-Pc5
