@@ -1,0 +1,80 @@
+# L3 --------------------
+
+en
+conf t
+vlan 2
+name vlan2
+end
+
+en
+conf t
+vlan 3
+name vlan3
+end
+
+en
+conf t
+vlan 4
+name vlan4
+end
+
+en
+conf t
+int fa0/1
+switchport mode access 
+switchport access vlan 2
+end
+
+en
+conf t
+int fa0/2
+switchport mode access 
+switchport access vlan 3
+end
+
+en
+conf t
+int fa0/3
+switchport mode access 
+switchport access vlan 4
+end
+
+en
+conf t
+int vlan2
+ip address 2.2.2.1 255.255.255.0
+no shutdown
+end
+
+en
+conf t
+int vlan3
+ip address 3.3.3.1 255.255.255.0
+no shutdown
+end
+
+en
+conf t
+int vlan4
+ip address 4.4.4.1 255.255.255.0
+no shutdown
+
+end
+
+en
+conf t
+ip routing
+
+end
+
+wr mem
+
+# Connecorts -----------------
+
+Pc0::fa0<->L3::fa0/1
+Pc1::fa0<->L3::fa0/2
+Pc2::fa0<->L3::fa0/3
+
+Pc0::: ip address 2.2.2.2 255.255.255.0 gataway 2.2.2.1
+Pc1::: ip address 3.3.3.2 255.255.255.0 gataway 3.3.3.1
+Pc2::: ip address 4.4.2.3 255.255.255.0 gataway 4.4.2.1
