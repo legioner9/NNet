@@ -1,5 +1,16 @@
 # common commands
 
+```plantuml
+@startmindmap
+* #
+** line 
+** int
+** vlan
+***[#red] inline color
+***[#green] inline color 
+@endmindmap
+```
+
 en
 conf t
 wr mem
