@@ -1,0 +1,44 @@
+# Rut Cisco
+
+## configurate ifs
+
+### phis ports gi0/i
+
+        {enter configurator interfaces gi0/1}
+    (config)#int gi0/1
+
+
+<!-- ## define vlan 
+
+    (config)#vlan 2
+    (config-vlan)#name vlan2
+
+## configurate ifs
+
+### phis ports fa0/i gi0/i
+
+        {enter configurator interfaces fa0/1}
+    (config)#int fa0/1
+        {define mode: access, dynamic, trunk}
+    (config-if)#switchport mode access 
+        {define access vlan 2 - connect end device Pc (trunc - more than one vlan)}
+    (config-if)#switchport access vlan 2
+    
+### ip assine only to logical int - vlan, Not phisical fa0/i
+
+        {enter configurator interfaces - vlan1 is default vlan for all phis ports}
+    (config)#int vlan1
+    (config-if)#ip address 192.168.0.1 255.255.255.0
+        {all logical ifs in shutdown - UP him}
+    (config-if)#no shutdown    
+
+### trunc
+
+    (config)#int gi0/1
+    (config-if)#switchport mode trunk
+    (config-if)#switchport trunk encapsulation dot1q 
+    (config-if)#switchport trunk allowed vlan 2,3
+
+## routing (union) all ip 
+
+    (config)#ip routing -->

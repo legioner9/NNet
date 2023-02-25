@@ -1,0 +1,96 @@
+# L2 --------------------
+
+en
+conf t
+vlan 2
+name vlan2
+end
+
+en
+conf t
+vlan 3
+name vlan3
+end
+
+en
+conf t
+int fa0/1
+switchport mode access 
+switchport access vlan 2
+end
+
+en
+conf t
+int fa0/2
+switchport mode access 
+switchport access vlan 3
+end
+
+en
+conf t
+int fa0/3
+switchport mode access 
+switchport access vlan 2
+end
+
+en
+conf t
+int fa0/4
+switchport mode access 
+switchport access vlan 3
+end
+
+en
+conf t
+int gi0/1
+switchport mode trunk
+switchport trunk allowed vlan 2,3
+end
+
+# Rut --------------------
+
+en
+conf t
+int fa0/0
+no shutdown 
+end
+
+en
+conf t
+int fa0/0.2
+encapsulation dot1Q 2
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+end
+
+en
+conf t
+int fa0/0.3
+encapsulation dot1Q 3
+ip address 192.168.3.1 255.255.255.0
+no shutdown
+end
+
+en
+conf t
+ip routing
+end
+
+wr mem
+
+# Connecorts -----------------
+
+Pc0::fa0<->L2::fa0/1
+Pc1::fa0<->L2::fa0/2
+Pc2::fa0<->L2::fa0/3
+Pc4::fa0<->L2::fa0/4
+
+Pc0::: ip address 192.168.2.2 255.255.255.0 gataway 192.168.2.1
+Pc1::: ip address 192.168.3.2 255.255.255.0 gataway 192.168.3.1
+Pc2::: ip address 192.168.2.3 255.255.255.0 gataway 192.168.2.1
+Pc3::: ip address 192.168.3.3 255.255.255.0 gataway 192.168.3.1
+
+# ping 
+Pc0+Pc2
+Pc0-Pc1 ??? across router 
+Pc0+192.168.2.1
