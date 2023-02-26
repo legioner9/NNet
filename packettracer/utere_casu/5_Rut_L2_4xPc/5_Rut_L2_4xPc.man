@@ -94,3 +94,12 @@ Pc3::: ip address 192.168.3.3 255.255.255.0 gataway 192.168.3.1
 Pc0+Pc2
 Pc0-Pc1 ??? across router 
 Pc0+192.168.2.1
+
+
+tmp 
+
+en
+conf t
+int gi0/1
+no shutdown 
+end

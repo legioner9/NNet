@@ -164,6 +164,13 @@ end
 
 en
 conf t
+int gi0/1
+switchport mode access 
+switchport access vlan 4
+end
+
+en
+conf t
 vlan 2
 name vlan2
 end
@@ -173,6 +180,14 @@ conf t
 vlan 3
 name vlan3
 end
+
+en
+conf t
+vlan 4
+name vlan4
+end
+
+
 
 en
 conf t
@@ -190,10 +205,33 @@ end
 
 en
 conf t
+int vlan4
+ip address 192.168.4.2 255.255.255.0
+no shutdown
+end
+
+en
+conf t
 ip routing
 end
 
 wr mem
+
+# Rut --------------------
+
+en
+conf t
+int gi0/0
+ip address 192.168.4.1 255.255.255.0
+no shutdown
+end
+
+wr mem
+
+en
+ping 192.168.4.2
+
+<!-- ping 192.168.2.2  not sccesses - STATIC IP ??? -->
 
 # Connecorts (add 1) -----------------
 
