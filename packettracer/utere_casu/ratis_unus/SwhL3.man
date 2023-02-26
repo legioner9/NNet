@@ -1,4 +1,22 @@
-# SwhL2 Cisco
+```plantuml
+@startmindmap
+* (#) en
+** \conf t
+*** \vlan {i}
+**** \\name {n}
+*** \int {port}
+**** \switchport
+***** mode
+****** access
+****** dynamic
+****** trunk
+***** trunk allowed vlan {i}
+***** trunk encapsulation dot1q 
+****** \switchport trunk allowed vlan {i},{j}, ...
+@endmindmap
+```
+
+# SwhL3 Cisco
 
 ## define vlan 
 
@@ -28,4 +46,9 @@
 
     (config)#int gi0/1
     (config-if)#switchport mode trunk
+    (config-if)#switchport trunk encapsulation dot1q 
     (config-if)#switchport trunk allowed vlan 2,3
+
+## routing (union) all ip 
+
+    (config)#ip routing

@@ -2,12 +2,23 @@
 
 ```plantuml
 @startmindmap
-* #
+* (#) en
+** enable
+*** password
+*** secret
 ** line 
 ** int
 ** vlan
 ***[#red] inline color
-***[#green] inline color 
+***[#green] inline color
+
+** conf t 
+** username
+-- show
+--- vlan
+--- run
+--- mac address-table
+--- ip route
 @endmindmap
 ```
 
@@ -17,6 +28,7 @@ wr mem
 do show run
 do show vlan
 do show mac address-table 
+do show ip route 
 
 # accesses secure
 

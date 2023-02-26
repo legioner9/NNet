@@ -1,14 +1,22 @@
-# Rut Cisco
+```plantuml
+@startmindmap
+* (#) en
+** \conf t
+*** \vlan {i}
+**** \\name {n}
+*** \int {port}
+**** \switchport
+***** mode
+****** access
+****** dynamic
+****** trunk
+***** trunk allowed vlan {i}
+@endmindmap
+```
 
-## configurate ifs
+# SwhL2 Cisco
 
-### phis ports gi0/i
-
-        {enter configurator interfaces gi0/1}
-    (config)#int gi0/1
-
-
-<!-- ## define vlan 
+## define vlan 
 
     (config)#vlan 2
     (config-vlan)#name vlan2
@@ -36,9 +44,4 @@
 
     (config)#int gi0/1
     (config-if)#switchport mode trunk
-    (config-if)#switchport trunk encapsulation dot1q 
     (config-if)#switchport trunk allowed vlan 2,3
-
-## routing (union) all ip 
-
-    (config)#ip routing -->

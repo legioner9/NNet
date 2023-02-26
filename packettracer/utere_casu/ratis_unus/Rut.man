@@ -1,6 +1,20 @@
-# SwhL3 Cisco
+# Rut Cisco
 
-## define vlan 
+## configurate ifs
+
+### phis ports gi0/i
+
+        {enter configurator interfaces gi0/1}
+    (config)#int gi0/1
+
+## table static route
+
+        {ip [{dest net} ip mask] [{throw} ip]}
+    (config)#ip route 192.168.2.0 255.255.255.0 192.168.4.2
+        {default route}
+    (config)#ip route 0.0.0.0 0.0.0.0 192.168.7.2
+
+<!-- ## define vlan 
 
     (config)#vlan 2
     (config-vlan)#name vlan2
@@ -33,4 +47,4 @@
 
 ## routing (union) all ip 
 
-    (config)#ip routing
+    (config)#ip routing -->

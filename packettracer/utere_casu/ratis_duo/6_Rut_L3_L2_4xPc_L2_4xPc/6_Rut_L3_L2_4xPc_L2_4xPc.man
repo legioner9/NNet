@@ -230,8 +230,21 @@ wr mem
 
 en
 ping 192.168.4.2
+end
+<!-- ping 192.168.2.2  not sccesses - demand STATIC route -->
+en
+conf t
+ip route 192.168.2.0 255.255.255.0 192.168.4.2
+ip route 192.168.3.0 255.255.255.0 192.168.4.2
 
-<!-- ping 192.168.2.2  not sccesses - STATIC IP ??? -->
+end
+
+wr mem
+
+en
+ping 192.168.2.2
+ping 192.168.3.2
+end
 
 # Connecorts (add 1) -----------------
 
