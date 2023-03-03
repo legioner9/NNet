@@ -1,114 +1,114 @@
-# Swh0 L2 --------------------
+# Swh0.1 L2 --------------------
 
 en
 conf t
-vlan 2
-name vlan2
+vlan 21
+name vlan21
 end
 
 en
 conf t
-vlan 3
-name vlan3
+vlan 31
+name vlan31
 end
 
 en
 conf t
 int fa0/1
 switchport mode access 
-switchport access vlan 2
+switchport access vlan 21
 end
 
 en
 conf t
 int fa0/2
 switchport mode access 
-switchport access vlan 3
+switchport access vlan 31
 end
 
 en
 conf t
 int fa0/3
 switchport mode access 
-switchport access vlan 2
+switchport access vlan 21
 end
 
 en
 conf t
 int fa0/4
 switchport mode access 
-switchport access vlan 3
+switchport access vlan 31
 end
 
 wr mem
 
 # Connecorts -----------------
 
-Pc0::fa0<->L2::fa0/1
-Pc1::fa0<->L2::fa0/2
-Pc2::fa0<->L2::fa0/3
-Pc4::fa0<->L2::fa0/4
+Pc0.1::fa0<->Swh0.1::fa0/1
+Pc1.1::fa0<->Swh0.1::fa0/2
+Pc2.1::fa0<->Swh0.1::fa0/3
+Pc3.1::fa0<->Swh0.1::fa0/4
 
-Pc0::: ip address 192.168.2.2 255.255.255.0 gataway 192.168.2.1
-Pc1::: ip address 192.168.3.2 255.255.255.0 gataway 192.168.3.1
-Pc2::: ip address 192.168.2.3 255.255.255.0 gataway 192.168.2.1
-Pc3::: ip address 192.168.3.3 255.255.255.0 gataway 192.168.2.1
+Pc0.1::: ip address 192.168.21.2 255.255.255.0 gataway 192.168.21.1
+Pc1.1::: ip address 192.168.31.2 255.255.255.0 gataway 192.168.31.1
+Pc2.1::: ip address 192.168.21.3 255.255.255.0 gataway 192.168.21.1
+Pc3.1::: ip address 192.168.31.3 255.255.255.0 gataway 192.168.31.1
 
 # ping 
-Pc0+Pc2
-Pc0-Pc1
+Pc0.1+Pc2.1
+Pc0.1-Pc1.1
 
 
 # Swh1 L2 --------------------
 
 en
 conf t
-vlan 2
-name vlan2
+vlan 21
+name vlan21
 end
 
 en
 conf t
-vlan 3
-name vlan3
+vlan 31
+name vlan31
 end
 
 en
 conf t
 int fa0/1
 switchport mode access 
-switchport access vlan 2
+switchport access vlan 21
 end
 
 en
 conf t
 int fa0/2
 switchport mode access 
-switchport access vlan 3
+switchport access vlan 31
 end
 
 en
 conf t
 int fa0/3
 switchport mode access 
-switchport access vlan 2
+switchport access vlan 21
 end
 
 en
 conf t
 int fa0/4
 switchport mode access 
-switchport access vlan 3
+switchport access vlan 31
 end
 
 wr mem
 
 # Connecorts (add one gataway) -----------------
 
-Pc4::fa0<->L2::fa0/1
-Pc5::fa0<->L2::fa0/2
-Pc6::fa0<->L2::fa0/3
-Pc7::fa0<->L2::fa0/4
+Pc4.1::fa0<->L2::fa0/1
+Pc5.1::fa0<->L2::fa0/2
+Pc6.1::fa0<->L2::fa0/3
+Pc7.1::fa0<->L2::fa0/4
 
 Pc4::: ip address 192.168.2.4 255.255.255.0 gataway 192.168.2.1
 Pc5::: ip address 192.168.3.4 255.255.255.0 gataway 192.168.3.1
@@ -125,7 +125,7 @@ en
 conf t
 int gi0/1
 switchport mode trunk
-switchport trunk allowed vlan 2,3
+switchport trunk allowed vlan 21,31
 end
 
 wr mem
@@ -137,7 +137,7 @@ en
 conf t
 int gi0/1
 switchport mode trunk
-switchport trunk allowed vlan 2,3
+switchport trunk allowed vlan 21,31
 end
 
 wr mem
@@ -149,7 +149,7 @@ conf t
 int fa0/1
 switchport trunk encapsulation dot1q 
 switchport mode trunk
-switchport trunk allowed vlan 2,3
+switchport trunk allowed vlan 21,31
 end
 
 
@@ -159,54 +159,54 @@ conf t
 int fa0/2
 switchport trunk encapsulation dot1q 
 switchport mode trunk
-switchport trunk allowed vlan 2,3
+switchport trunk allowed vlan 21,31
 end
 
 en
 conf t
 int gi0/1
 switchport mode access 
-switchport access vlan 4
+switchport access vlan 41
 end
 
 en
 conf t
-vlan 2
-name vlan2
+vlan 21
+name vlan21
 end
 
 en
 conf t
-vlan 3
-name vlan3
+vlan 31
+name vlan31
 end
 
 en
 conf t
-vlan 4
-name vlan4
+vlan 41
+name vlan41
 end
 
 
 
 en
 conf t
-int vlan2
-ip address 192.168.2.1 255.255.255.0
+int vlan21
+ip address 192.168.21.1 255.255.255.0
 no shutdown
 end
 
 en
 conf t
 int vlan3
-ip address 192.168.3.1 255.255.255.0
+ip address 192.168.31.1 255.255.255.0
 no shutdown
 end
 
 en
 conf t
 int vlan4
-ip address 192.168.4.2 255.255.255.0
+ip address 192.168.41.2 255.255.255.0
 no shutdown
 end
 
@@ -222,34 +222,34 @@ wr mem
 en
 conf t
 int gi0/0
-ip address 192.168.4.1 255.255.255.0
+ip address 192.168.41.1 255.255.255.0
 no shutdown
 end
 
 wr mem
 
 en
-ping 192.168.4.2
+ping 192.168.41.2
 end
 <!-- ping 192.168.2.2  not sccesses - demand STATIC route -->
 en
 conf t
-ip route 192.168.2.0 255.255.255.0 192.168.4.2
-ip route 192.168.3.0 255.255.255.0 192.168.4.2
+ip route 192.168.21.0 255.255.255.0 192.168.41.2
+ip route 192.168.31.0 255.255.255.0 192.168.41.2
 
 end
 
 wr mem
 
 en
-ping 192.168.2.2
-ping 192.168.3.2
+ping 192.168.21.2
+ping 192.168.31.2
 end
 
 # Connecorts (add 1) -----------------
 
-Swh0/L2::gi0/1<->Swh0/L3::fa0/1
-Swh0/L2::gi0/1<->Swh0/L3::fa0/2
+Swh0.1/L2::gi0/1<->Swh0.1/L3::fa0/1
+Swh0.1/L2::gi0/1<->Swh0.1/L3::fa0/2
 
 
 # ping (add 1) -----------------
