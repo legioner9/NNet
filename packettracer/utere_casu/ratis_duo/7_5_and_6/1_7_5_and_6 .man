@@ -161,7 +161,7 @@ end
 
 en
 conf t
-int gi0/1
+int gi0/0
 switchport mode access 
 switchport access vlan 41
 end
@@ -253,3 +253,21 @@ Swh0.1/L2::gi0/1<->Swh0.1/L3::fa0/2
 
 Pc0+Pc6
 Pc0-Pc5
+
+
+
+
+
+TMP
+en
+conf t
+no vlan 4
+vlan 41
+name vlan41
+int vlan41
+switchport mode access 
+switchport access vlan 41
+int gi0/0
+ip address 192.168.41.1 255.255.255.0
+no shutdown
+end

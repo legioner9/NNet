@@ -90,7 +90,6 @@ name vlan31
 no vlan 4
 vlan 41
 name vlan41
-
 int fa0/1
 switchport trunk encapsulation dot1q 
 switchport mode trunk
@@ -219,19 +218,25 @@ Pc0.1-Pc1.1
 en
 conf t
 
-int fa0/0
+vlan 22
+name vlan22
+
+vlan 32
+name vlan32
+
+int gi0/0
 no shutdown
 exit
-int fa0/0.2
+int gi0/0.2
 encapsulation dot1Q  22
 ip address 192.168.22.1 255.255.255.0
 no shutdown
 exit
-int fa0/0.3
+int gi0/0.3
 encapsulation dot1Q  32
 ip address 192.168.32.1 255.255.255.0
 no shutdown
-
+ 
 end
 
 wr mem
